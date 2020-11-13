@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen DOM</title>
+    <script>
+        
+    </script>
+</head>
+<body>
+    <p>Usando DOM y formularios</p>
+<!---Usando DOM: Agregue sus datos solicitados en los primeros 2 párrafos. (5 puntos)-->
+    <p id="nombre">Nombre: Jeancarlo Antonio Aranda Cen</p>
+    <p id="numero">Número de control: 17390318</p>
+
+<!---Agregue manualmente un formulario que permita agregar nombres de personajes favoritos, abajo del 3er párrafo. (10 puntos)-->
+<!---Usando DOM: Agregue sus personajes favoritos. ((10 puntos))-->  
+    <p id="personajes">Personajes favoritos</p> 
+        <form action="">
+
+        </form>
+
+    
+
+
+<!---Agregue los elementos y scripts necesarios para que mediante el uso de controles, el usuario seleccione y elimine las películas que desee. (15 puntos)-->
+<!---Usando DOM: Agregue los elementos del arreglo de películas, a la lista de películas (10 puntos)-->  
+    <p id="peliculas">Películas favoritas</p>
+
+
+    <ol id="favoritos">
+	  <li>Shrek</li>
+	  <li>Un mundo feliz</li>
+	  <li>La vida inútil de Pito Pérez</li>
+	  <li>El club de la pelea</li>
+	</ol>
+
+
+    <p>Arreglos y Objetos</p>
+    <script>
+        /*String[] meses = new String[5];*/
+        //Array "normal"
+        //var meses = new Array();
+        var meses = ["Enero","Febrero","marzo","Abril"];
+        var numMeses = meses.length;
+        alert(meses[2]);  //Marzo
+        //console.log(meses[2]);
+
+        //Array asociativo
+        var diasMes = new Array();
+        //para llave o clave: valor
+        diasMes['Enero']=31;
+        diasMes['Febrero']=[28, 29]; //Arreglo como elemento
+        diasMes['Marzo']=31;
+        diasMes['Abril']=30;
+        //console.log(diasMes['Febrero']);
+
+        var numMeses = diasMes.length;
+        alert(diasMes[0]);  //Indefinido
+        alert(diasMes['Enero']);  //31
+        //console.log(diasMes[0]);
+        //console.log(diasMes['Enero']);
+
+        diasMes['Mayo'] = 'treinta y uno';
+        diasMes['RestoDelAnio'] = {Junio: 30, Julio: 31, Agosto: 31,
+            septiembre: "No me acuerdo", Octubre: false};
+        //console.log(diasMes['RestoDelAnio']);
+
+        //console.log(diasMes['RestoDelAnio'].Junio);
+        //console.log(diasMes['RestoDelAnio'].septiembre);
+        //console.log(diasMes.RestoDelAnio.septiembre);
+
+        //2° Tema
+        //var juegoDados = new Array();
+        var juegoDados = new Object();
+
+        
+        juegoDados['id'] = 1;
+        juegoDados['jugador1'] = "Juán Sáncehz";
+        juegoDados['jugador2'] = "Jorge Méndez";
+        juegoDados['dado1'] = ["1, 2, 3, 4, 5, 6"];
+        juegoDados['dado2'] = ["1, 2, 3, 4, 5, 6"];
+        juegoDados['ganador'] = undefined;
+
+        //console.log(juegoDados['jugador1']);
+        //console.log(juegoDados.jugador1);
+        //console.log(juegoDados.dado1[5]); // 6
+
+        juegoDados.apuesta = 100;
+        //console.log(juegoDados.apuesta); // 100
+
+        juegoDados['tirarDados'] = function(){
+            //console.log("Tirando dado 1");
+            //console.log("Tirando dado 2");
+        };
+        
+        juegoDados.tirarDados();
+
+        juegoDados.determinaGanador = function(valor1, valor2){
+            if (valor1 > valor2)
+                console.log("Gano 1"); 
+            else
+                console.log("Gano 2"); 
+        }
+
+        juegoDados.determinaGanador(4, 7);
+
+        function setApuesta(cantidad){
+            juegoDados.apuesta = cantidad;
+        }
+
+        juegoDados.setApuesta = setApuesta;
+
+        juegoDados.setApuesta = function (cantidad){
+            juegoDados.apuesta = cantidad;
+        }
+
+        //Nitación Larga
+        function setApuesta(cantidad){
+            this.apuesta = cantidad;
+        }
+
+        juegoDados.setApuesta = setApuesta;
+
+        setApuesta(200);
+        //console.log(juegoDados.apuesta);
+
+        juegoDados.setApuesta(200);
+        //console.log(juegoDados.apuesta);
+
+        /*Notación Corta
+        juegoDados.setApuesta = function (cantidad){
+            this.apuesta = cantidad;
+        }*/
+
+
+    </script>
+
+</body>
+</html>
