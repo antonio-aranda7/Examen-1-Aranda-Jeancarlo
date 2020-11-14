@@ -6,175 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="styles.css">
     <title>Examen DOM</title>
-    <style>
-        
-        body {
-            background-image:url(./fondo.jpg);
-            text-decoration-color: rgb(52, 50, 206);
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            font-family: 'Lato', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        p{
-        font-size: large;
-        text-align: center;
-        }
-        .container {
-            background-color: #1b1b1b;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            width: 400px;
-            max-width: 100%;
-            }
-
-        .header {
-            border-bottom: 1px solid #f0f0f0;
-            background-color: #f7f7f7;
-            padding: 20px 40px;
-            align-content: center;
-        }
-        .header h2 {
-            margin: 0;
-            text-align: center;
-        }
-        .titles{
-            color: #DC602E;
-            font-size: 24px;
-        }
-        .datos{
-        text-align: center;
-        background-color: #FCF7F8;
-
-        }
-        .form {
-        align-content: center;
-        padding: 30px 40px;
-        }
-
-        .form-control {
-        margin-bottom: 10px;
-        padding-bottom: 20px;
-        position: relative;
-        }
-
-        .form-control label {
-        display: inline-block;
-        margin-bottom: 5px;
-        }
-
-        .form-control input {
-        border: 2px solid #f0f0f0;
-        border-radius: 4px;
-        display: block;
-        font-family: inherit;
-        font-size: 14px;
-        padding: 10px;
-        width: 100%;
-        }
-
-        .listaPersonajes{
-        text-align: center;
-        font-size: larger;
-        list-style: none;
-        font-style: inherit;
-        }
-
-        .btnAgregar{
-        cursor: pointer;
-        background-color: #F87257;
-        border: 2px solid #F87257;
-        border-radius: 4px;
-        color: #fff;
-        display: block;
-        font-family: inherit;
-        font-size: 16px;
-        padding: 10px;
-        margin-top: 20px;
-        width: 100%;
-        }
-
-        ol {
-        font-style: inherit;
-        font-weight: 300;
-        text-align: justify;
-        list-style: none;
-        cursor: pointer;
-        position: relative;
-        padding: 12px 8px 12px 40px;
-        background: #eee;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        }
-        li.select {
-            background:red;
-            color: black;
-        }
-
-        button {
-        cursor: pointer;
-        background-color: #F87257;
-        border: 2px solid #F87257;
-        border-radius: 4px;
-        color: #fff;
-        display: block;
-        font-family: inherit;
-        font-size: 16px;
-        padding: 10px;
-        margin-top: 20px;
-        width: 100%;
-        }
-        /*p,ol,li {
-            font-size: 17px;
-            margin-top: 20px;
-        }
-        li {
-            background: #424141;
-            padding: 5px;
-            margin-left: 5px;
-            margin-right: 50px;
-        }
-        input[type=text]:hover{
-            background-color: #4CAF50;
-            color: white;
-        }
-        input[type=text]{
-            
-        padding: 5px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 13px;
-        transition-duration: 0.4s;
-        border: 2px solid #4CAF50;
-        }
-
-        input[type=button]{
-        padding: 5px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 13px;
-        border-radius: 12px;
-        transition-duration: 0.4s;
-        border: 2px solid #4CAF50;
-        }
-        input[type=button]:hover{
-            background-color: #4CAF50;
-            color: white;
-        }
-        */
-
-    </style>
 </head>
 <body id="body" text="grenn" bgcolor="black">
     <div class="container">
@@ -188,22 +19,16 @@
             </div>
         <!---Agregue manualmente un formulario que permita agregar nombres de personajes favoritos, abajo del 3er párrafo. (10 puntos)-->
         <!---Usando DOM: Agregue sus personajes favoritos. ((10 puntos))-->  
-            <div>
                 <p class="titles">Personajes favoritos</p> 
-                <div id="listaPersonajes" class="listaPersonajes"></div>
-                <div class="form-control">
                     <form id="personajes" class="form">
                         <p id="errorPersonaje" style="color: red;"></p>
                         <input type="text" id="inputPersonaje" class="personaje" placeholder="Personaje"/>
                         <input type="button" id="btnPersonaje" class="btnAgregar" value="Agregar Personaje" onclick=" this.value='Agregar Otro Personaje'; agregarPersonaje();">
                         <p id="pPersonaje"></p>
                     </form>
-                </div>
-            </div>
 
         <!---Agregue los elementos y scripts necesarios para que mediante el uso de controles, el usuario seleccione y elimine las películas que desee. (15 puntos)-->
         <!---Usando DOM: Agregue los elementos del arreglo de películas, a la lista de películas (10 puntos)-->  
-        <div class="movies">
             <p id="peliculas" class="titles">Películas favoritas</p>
             <p id="errorPelicula" style="color: red;"></p>
             <input type="text" id="inputPelicula" class="personaje" placeholder="Pelicula"/>
@@ -215,8 +40,7 @@
                 <li>El club de la pelea</li>   
                 <div id="misPeliculas"></div>     
             </ol>
-            <input type="button" id="btnPelicula" value="Eliminar Pelicula" onclick="this.value='Eliminar Otra Pelicula'; borrarPelicula(); eliminar();">
-        </div>
+            <input type="button" id="btnPelicula" value="Eliminar Pelicula" class="btnAgregar" onclick="this.value='Eliminar Otra Pelicula'; borrarPelicula(); eliminar();">
     </div>
 </body>
 <script type="text/javascript" src="DOM.js"></script>
