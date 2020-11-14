@@ -7,12 +7,27 @@
     <link rel="stylesheet" href="styles.css">
     <title>Examen DOM</title>
     <style>
-        /*
+        
         body {
-            background-color:  black;
+            background-image:url(./fondo.jpg);
             text-decoration-color: rgb(52, 50, 206);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-family: 'Lato', sans-serif;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
         }
-        p,ol,li {
+        p{
+        font-size: large;
+        text-align: center;
+        }
+        
+        /*p,ol,li {
             font-size: 17px;
             margin-top: 20px;
         }
@@ -78,37 +93,43 @@
     </style>
 </head>
 <body id="body" text="grenn" bgcolor="black">
-    <h2>Usando DOM y formularios</h3>
+    <div class="container"></div>
+        <div class="header">
+            <h2>Usando DOM y formularios</h3>
+        </div>
+        <p>Usando DOM y formularios</p>
+    <!---Usando DOM: Agregue sus datos solicitados en los primeros 2 párrafos. (5 puntos)-->
+        <div class = "datos">
+            <p id="nombre">Nombre: </p>
+            <p id="numero">Número de control: </p>
+        </div>
+    <!---Agregue manualmente un formulario que permita agregar nombres de personajes favoritos, abajo del 3er párrafo. (10 puntos)-->
+    <!---Usando DOM: Agregue sus personajes favoritos. ((10 puntos))-->  
+        <p >Personajes favoritos</p> 
+        <form id="personajes">
+            <p id="errorPersonaje" style="color: red;"></p>
+            <input type="text" id="inputPersonaje" placeholder="Personaje"/>
+            <input type="button" id="btnPersonaje" value="Agregar Personaje" onclick=" this.value='Agregar Otro Personaje'; agregarPersonaje();">
+            <p id="pPersonaje"></p>
+        </form>
 
-    <p>Usando DOM y formularios</p>
-<!---Usando DOM: Agregue sus datos solicitados en los primeros 2 párrafos. (5 puntos)-->
-    <p id="nombre">Nombre: </p>
-    <p id="numero">Número de control: </p>
+    <!---Agregue los elementos y scripts necesarios para que mediante el uso de controles, el usuario seleccione y elimine las películas que desee. (15 puntos)-->
+    <!---Usando DOM: Agregue los elementos del arreglo de películas, a la lista de películas (10 puntos)-->  
+        <p id="peliculas">Películas favoritas</p>
+        <p id="errorPelicula" style="color: red;"></p>
+        <input type="text" id="inputPelicula" placeholder="Pelicula"/>
+        <input type="button" id="btnPelicula" value="Agregar Pelicula" onclick="this.value='Agregar Otra Pelicula'; agregarPelicula()">
+        <ol id="olPeliculas">       
+            <li>Shrek</li>
+            <li>Un mundo feliz</li>
+            <li>La vida inútil de Pito Pérez</li>
+            <li>El club de la pelea</li>   
+            <div id="misPeliculas"></div>     
+        </ol>
+        <input type="button" id="btnPelicula" value="Eliminar Pelicula" onclick="this.value='Eliminar Otra Pelicula'; borrarPelicula(); eliminar();">
 
-<!---Agregue manualmente un formulario que permita agregar nombres de personajes favoritos, abajo del 3er párrafo. (10 puntos)-->
-<!---Usando DOM: Agregue sus personajes favoritos. ((10 puntos))-->  
-    <p >Personajes favoritos</p> 
-    <form id="personajes">
-        <p id="errorPersonaje" style="color: red;"></p>
-        <input type="text" id="inputPersonaje" placeholder="Personaje"/>
-        <input type="button" id="btnPersonaje" value="Agregar Personaje" onclick=" this.value='Agregar Otro Personaje'; agregarPersonaje();">
-        <p id="pPersonaje"></p>
-    </form>
-
-<!---Agregue los elementos y scripts necesarios para que mediante el uso de controles, el usuario seleccione y elimine las películas que desee. (15 puntos)-->
-<!---Usando DOM: Agregue los elementos del arreglo de películas, a la lista de películas (10 puntos)-->  
-    <p id="peliculas">Películas favoritas</p>
-    <p id="errorPelicula" style="color: red;"></p>
-    <input type="text" id="inputPelicula" placeholder="Pelicula"/>
-    <input type="button" id="btnPelicula" value="Agregar Pelicula" onclick="this.value='Agregar Otra Pelicula'; agregarPelicula()">
-    <ol id="olPeliculas">       
-        <li>Shrek</li>
-        <li>Un mundo feliz</li>
-        <li>La vida inútil de Pito Pérez</li>
-        <li>El club de la pelea</li>   
-        <div id="misPeliculas"></div>     
-	</ol>
-    <input type="button" id="btnPelicula" value="Eliminar Pelicula" onclick="this.value='Eliminar Otra Pelicula'; borrarPelicula(); eliminar();">
+    
+    </div>
 </body>
 <script type="text/javascript" src="DOM.js"></script>
 </html>
