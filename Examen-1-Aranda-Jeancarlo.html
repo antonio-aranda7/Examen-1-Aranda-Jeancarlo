@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Examen DOM</title>
-    <script>
-        
-    </script>
+    
 </head>
-<body>
+<body name="body" text=white bgcolor="black">
+    <h2>Usando DOM y formularios</h3>
+
     <p>Usando DOM y formularios</p>
 <!---Usando DOM: Agregue sus datos solicitados en los primeros 2 párrafos. (5 puntos)-->
-    <p id="nombre">Nombre: Jeancarlo Antonio Aranda Cen</p>
-    <p id="numero">Número de control: 17390318</p>
+    <p id="nombre">Nombre: </p>
+    <p id="numero">Número de control: </p>
 
 <!---Agregue manualmente un formulario que permita agregar nombres de personajes favoritos, abajo del 3er párrafo. (10 puntos)-->
 <!---Usando DOM: Agregue sus personajes favoritos. ((10 puntos))-->  
-    <p id="personajes">Personajes favoritos</p> 
-        <form action="">
-
-        </form>
-
-    
-
+    <p >Personajes favoritos</p> 
+    <!--<form id="personajes" action="" onsubmit="return validacion()>-->
+    <form id="personajes">
+        <p id="errorPersonaje" style="color: red;"></p>
+        <input type="text" id="inputPersonaje" placeholder="Personaje"/>
+        <!--<input type="button" id="btnPersonaje" onclick="agregarPersonaje()" onclick="this.disabled=true;
+        this.value='Enviando...'; this.form.onsubmit()"  value="Agregar Personaje">-->
+        <!--<input type="button" id="btnPersonaje" value="Agregar Personaje" onchange="this.value='Agregar otro Personaje'; this.disabled=false; "
+        onclick="this.disabled=true; this.value='Enviando...'; agregarPersonaje()"  >-->
+        <input type="button" id="btnPersonaje" value="Agregar Personaje" onclick="agregarPersonaje()">
+        <p id="pPersonaje"></p>
+    </form>
 
 <!---Agregue los elementos y scripts necesarios para que mediante el uso de controles, el usuario seleccione y elimine las películas que desee. (15 puntos)-->
 <!---Usando DOM: Agregue los elementos del arreglo de películas, a la lista de películas (10 puntos)-->  
@@ -30,112 +36,87 @@
 
 
     <ol id="favoritos">
-	  <li>Shrek</li>
-	  <li>Un mundo feliz</li>
-	  <li>La vida inútil de Pito Pérez</li>
-	  <li>El club de la pelea</li>
+        <input type="text" id="inputFavoritos" placeholder="Pelicula"/>
+        <li>Shrek</li>
+        <li>Un mundo feliz</li>
+        <li>La vida inútil de Pito Pérez</li>
+        <li>El club de la pelea</li>
 	</ol>
 
-
     <p>Arreglos y Objetos</p>
+
     <script>
-        /*String[] meses = new String[5];*/
-        //Array "normal"
-        //var meses = new Array();
-        var meses = ["Enero","Febrero","marzo","Abril"];
-        var numMeses = meses.length;
-        alert(meses[2]);  //Marzo
-        //console.log(meses[2]);
+/*      agregando el dato nombre al 1° parafo*/
+        var nombre = document.getElementById("nombre");
+        var contenidoNombre = document.createTextNode(" Jeancarlo Antonio Aranda Cen");
+        nombre.appendChild(contenidoNombre);
+/*      agregando el dato numero de control al 2° parafo*/
+        var numero = document.getElementById("numero");
+        var contenidoNumero = document.createTextNode(" 17390318");
+        numero.appendChild(contenidoNumero);
 
-        //Array asociativo
-        var diasMes = new Array();
-        //para llave o clave: valor
-        diasMes['Enero']=31;
-        diasMes['Febrero']=[28, 29]; //Arreglo como elemento
-        diasMes['Marzo']=31;
-        diasMes['Abril']=30;
-        //console.log(diasMes['Febrero']);
+/*El objeto document permite acceder directamente a cualquier formulario mediante su atributo name:*/        
+        //var formularioPersonajes = document.personajes;
+        //var elementoPersona = document.personajes.personaje;
+/**/
+        var formularioPersonajes = document.getElementById("personajes");
+        var elementoPersona = document.getElementById("personaje");
 
-        var numMeses = diasMes.length;
-        alert(diasMes[0]);  //Indefinido
-        alert(diasMes['Enero']);  //31
-        //console.log(diasMes[0]);
-        //console.log(diasMes['Enero']);
-
-        diasMes['Mayo'] = 'treinta y uno';
-        diasMes['RestoDelAnio'] = {Junio: 30, Julio: 31, Agosto: 31,
-            septiembre: "No me acuerdo", Octubre: false};
-        //console.log(diasMes['RestoDelAnio']);
-
-        //console.log(diasMes['RestoDelAnio'].Junio);
-        //console.log(diasMes['RestoDelAnio'].septiembre);
-        //console.log(diasMes.RestoDelAnio.septiembre);
-
-        //2° Tema
-        //var juegoDados = new Array();
-        var juegoDados = new Object();
+        var parrafopersonaje1 = document.createElement("p");
+        var parrafopersonaje2 = document.createElement("p");
+        var contenidoPersonaje1 = document.createTextNode("- Winnie the Pooh");
+        var contenidoPersonaje2 = document.createTextNode("- Ben 10");
+        parrafopersonaje1.appendChild(contenidoPersonaje1);
+        parrafopersonaje2.appendChild(contenidoPersonaje2);
+        formularioPersonajes.appendChild(parrafopersonaje1);
+        formularioPersonajes.appendChild(parrafopersonaje2);
+        //83
+        /*Andrei cambia el valor del input y agregarlo debajo*/
+        var x = 0;
+        //var contador = 1;
+        var array = Array();
+        function agregarPersonaje() {
+            var personaje = document.getElementById("inputPersonaje").value;
+            //var error = 1;    
+            if (personaje === '' || personaje == 0){               
+                    //alert("No ha ingresado ningun personaje")
+                    document.getElementById("errorPersonaje").innerHTML =" No ha ingresado ningun personaje" ;                   
+                    /*var errorPersonaje = document.createElement("p");
+                    var errorContenidoPersonaje = document.createTextNode("Ingrese un personaje");
+                    errorPersonaje.appendChild(errorContenidoPersonaje);
+                    formularioPersonajes.appendChild(errorPersonaje);
+                    error++;*/ 
+                }else{
+                    array[x] = document.getElementById("inputPersonaje").value;
+                    x++;
+                    var e = "";
+                    for (var i = 0; i <array.length; i++) {
+                        //var textopersona = document.createTextNode("-"+ personaje); 
+                    //e += contador + ". " + array[i] + "<br/>";
+                    e +="- " + array[i] + "<br/>";
+                    }
+                    document.getElementById("pPersonaje").innerHTML = e;
+                    
+                    //document.getElementById("pPersonaje").appendChild(textopersona);     
+                    /*var parrafopersonaje = document.createElement("p");         
+                    for (var i = 0; i < 1; i++) {
+                        var textopersona = document.createTextNode(document.getElementById("personaje").value);
+                    }
+                    document.getElementById("personaje").appendChild(textopersona);*/
+                }
+                //contador++;
+        }
 
         
-        juegoDados['id'] = 1;
-        juegoDados['jugador1'] = "Juán Sáncehz";
-        juegoDados['jugador2'] = "Jorge Méndez";
-        juegoDados['dado1'] = ["1, 2, 3, 4, 5, 6"];
-        juegoDados['dado2'] = ["1, 2, 3, 4, 5, 6"];
-        juegoDados['ganador'] = undefined;
-
-        //console.log(juegoDados['jugador1']);
-        //console.log(juegoDados.jugador1);
-        //console.log(juegoDados.dado1[5]); // 6
-
-        juegoDados.apuesta = 100;
-        //console.log(juegoDados.apuesta); // 100
-
-        juegoDados['tirarDados'] = function(){
-            //console.log("Tirando dado 1");
-            //console.log("Tirando dado 2");
-        };
+        function validacion(){
+            
+        }
+        /*var parrafos = document.getElementsByTagName("p");
+        var segundoParrafo = parrafos[1];
+        var contenidoNombre = document.createTextNode(" Jeancarlo Antonio Aranda Cen");
+        var nombre = segundoParrafo.getElementsByTagName("p");
         
-        juegoDados.tirarDados();
-
-        juegoDados.determinaGanador = function(valor1, valor2){
-            if (valor1 > valor2)
-                console.log("Gano 1"); 
-            else
-                console.log("Gano 2"); 
-        }
-
-        juegoDados.determinaGanador(4, 7);
-
-        function setApuesta(cantidad){
-            juegoDados.apuesta = cantidad;
-        }
-
-        juegoDados.setApuesta = setApuesta;
-
-        juegoDados.setApuesta = function (cantidad){
-            juegoDados.apuesta = cantidad;
-        }
-
-        //Nitación Larga
-        function setApuesta(cantidad){
-            this.apuesta = cantidad;
-        }
-
-        juegoDados.setApuesta = setApuesta;
-
-        setApuesta(200);
-        //console.log(juegoDados.apuesta);
-
-        juegoDados.setApuesta(200);
-        //console.log(juegoDados.apuesta);
-
-        /*Notación Corta
-        juegoDados.setApuesta = function (cantidad){
-            this.apuesta = cantidad;
-        }*/
-
-
+        nombre.appendChild(contenidoNombre);*/
     </script>
-
 </body>
 </html>
