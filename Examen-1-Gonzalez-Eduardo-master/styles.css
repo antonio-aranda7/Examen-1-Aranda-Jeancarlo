@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image:url(./img/back2.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+p{
+  font-size: large;
+  text-align: center;
+}
+
+.container {
+  background-color: #FCF7F8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 400px;
+  max-width: 100%;
+}
+
+
+.header {
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f7f7f7;
+  padding: 20px 40px;
+  align-content: center;
+}
+
+.header h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.titles{
+  color: #DC602E;
+  font-size: 24px;
+}
+
+.datos{
+  text-align: center;
+  background-color: #FCF7F8;
+
+}
+
+.form {
+  align-content: center;
+  padding: 30px 40px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.form-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+}
+
+.listaPersonajes{
+  text-align: center;
+  font-size: larger;
+  list-style: none;
+  font-style: inherit;
+}
+
+.btnAgregar{
+  cursor: pointer;
+  background-color: #F87257;
+  border: 2px solid #F87257;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+ol {
+  font-style: inherit;
+  font-weight: 300;
+  text-align: justify;
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+li.select {
+  background:#FA7557;
+  color: #EFEFEF;
+}
+
+button {
+  cursor: pointer;
+  background-color: #F87257;
+  border: 2px solid #F87257;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}

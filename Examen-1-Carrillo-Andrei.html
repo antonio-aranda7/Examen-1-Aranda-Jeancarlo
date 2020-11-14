@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" type="text/css" href="Estilos.css">
+    <title>Examen DOM</title>
+</head>
+
+<body name="body">
+<form>
+    <p>Usando DOM y formularios</p>
+    <p id="demo">Nombre: </p>
+    <input type="text" id="nombre">
+    <p id="demo2">Número de control: </p>
+    <input type="text" id="numControl"> <span>
+    <input type="button" value="Ingresar datos" onclick="agregarDatos()" id="btnDatos">
+</span>
+    <p>Personajes favoritos</p>
+    <input type="text" id="personajeFavorito">
+    <input type="button" id="btnPersonaje" onclick="agregarPersonaje()" value="Agregar Personaje">
+    <table id="tablaPersonaje"></table>
+    <p>Películas favoritas</p>
+    <input type="text" id="peliculaFavorita">
+    <input type="button" id="btnPelicula" onclick="agregarPelicula()" value="Agregar Pelicula">
+    <input type="button"  onclick="eliminar()" value ="Eliminar Pelicula">
+    <ol id="listaPeliculas">
+        <li>Shrek</li>
+        <li>Un mundo feliz</li>
+        <li>La vida inútil de Pito Pérez</li>
+        <li>El club de la pelea</li>
+    </ol>
+</form>
+<script>
+    function agregarDatos(){
+        var nombre = document.getElementById("nombre").value;
+        document.getElementById("demo").innerHTML = document.getElementById("demo").textContent + nombre;
+        var expresNumControl = new RegExp(/^([A-Za-z0-9])+$/);
+        var numControl = document.getElementById("numControl").value;
+        if (nombre === '' || numControl === ''){
+            alert("Alguno de los campos esta vacio")
+
+        }
+        if (expresNumControl.exec(numControl)){
+            document.getElementById("demo2").innerHTML = document.getElementById("demo2").textContent + numControl;
+        }
+        else{
+            alert("EL campo num de control no esta bien")
+        }
+    }
+    var contador = 1;
+    function agregarPersonaje() {
+        var personaje = document.getElementById("personajeFavorito").value
+        if (personaje === ''){
+            alert("Alguno de los campos esta vacio")
+
+        }
+        else {
+            var body = document.getElementsByTagName("body")[0];
+
+            var tabla = document.createElement("table");
+            var tblBody = document.createElement("tbody");
+
+            for (var i = 0; i < 1; i++) {
+
+                var hilera = document.createElement("tr");
+                for (var j = 0; j < 1; j++) {
+
+                    var celda = document.createElement("td");
+                    var textoCelda = document.createTextNode(contador + ".- " + personaje);
+                    celda.appendChild(textoCelda);
+                    hilera.appendChild(celda);
+                }
+
+                tblBody.appendChild(hilera);
+            }
+
+            document.getElementById("tablaPersonaje").appendChild(tblBody);
+            body.appendChild(tabla);
+            tabla.setAttribute("border", "0");
+            contador++;
+        }
+    }
+    function agregarPelicula() {
+        var lista = document.createElement("li");
+        var pelicula = document.getElementById("peliculaFavorita").value;
+        var textoCelda = document.createTextNode(pelicula);
+        if (pelicula === ''){
+            alert("pelicula esta vacio")
+        }
+        else {
+            lista.appendChild(textoCelda)
+            document.getElementById("listaPeliculas").appendChild(lista);
+        }
+    }
+    function eliminar(){
+        var pelicula = document.getElementById("peliculaFavorita").value;
+        var peliculasArray = document.getElementsByTagName("li");
+        if (pelicula === ''){
+            alert("pelicula esta vacio")
+        }else {
+            for (var i = 0; i < peliculasArray.length; i++) {
+                if (peliculasArray[i].textContent === pelicula) {
+                    document.getElementById("listaPeliculas").removeChild(peliculasArray[i])
+                }
+            }
+        }
+
+    }
+
+</script>
+</body>
+</html>

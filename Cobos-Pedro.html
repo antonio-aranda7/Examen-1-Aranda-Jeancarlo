@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Examen DOM</title>
+    <script>
+        var x=0;
+        var arreglo=Array();
+        function agregarPersonaje() {
+            var personaje=document.getElementById("personaje").value;          
+            if (personaje ==''){               
+                    alert("No hay nada");     
+                }else{
+                    arreglo[x]=document.getElementById("personaje").value;
+                    x++;
+                    var e = "";
+                    for (var i=0; i<arreglo.length; i++) {
+                    e+=arreglo[i] + "<br/>";
+                    }
+                    document.getElementById("persona").innerHTML=e;
+                }
+        }
+
+        function agregarPelicula() {
+            var lista=document.createElement("li");
+            var pelicula=document.getElementById("pelicula").value;
+            var nodePelicula=document.createTextNode(pelicula);
+            if (pelicula==''){
+                alert("No hay nada"); 
+            }
+            else {
+                lista.appendChild(nodePelicula)
+                document.getElementById("listaPelis").appendChild(lista);
+            }
+        }
+    
+        function eliminarrPelicula(){
+            var pelicula=document.getElementById("pelicula").value;
+            var lista=document.getElementsByTagName("li");
+            if (pelicula==''){
+                alert("No hay nada"); 
+            }else {
+                for (var i=0; i<lista.length; i++) {
+                    if (lista[i].textContent==pelicula) {
+                        document.getElementById("listaPelis").removeChild(lista[i])
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<p>Usando DOM y formularios</p>
+    <p id="nombre">Nombre: </p>
+    <p id="numeroControl">Número de control: </p>
+    <p >Personajes favoritos</p> 
+    <form>
+
+        <input type="text" id="personaje"/><br>
+        <input type="button" value="Agregue Personaje" onclick="agregarPersonaje()">
+        <p id="persona"></p>
+    
+        <p>Películas favoritas</p>
+        <input type="text" id="pelicula"/><br>
+        <input type="button" value="Agregue Pelicula" onclick="agregarPelicula()"><br>
+        <input type="button" value="Eliminar Pelicula " onclick="eliminarrPelicula()">
+        <ol id="listaPelis">       
+            <li>Shrek</li>
+            <li>Un mundo feliz</li>
+            <li>La vida inútil de Pito Pérez</li>
+            <li>El club de la pelea</li>        
+        </ol>
+    </form>
+    <script>
+        var nombre=document.getElementById("nombre");
+        var nodeNombre=document.createTextNode(" Cobos Gómez Pedro Luis");
+        nombre.appendChild(nodeNombre);
+        var numeroControl=document.getElementById("numeroControl");
+        var nodeNumeroControl=document.createTextNode(" 17390328");
+        numeroControl.appendChild(nodeNumeroControl);
+    </script>
+</body>
+</html>
