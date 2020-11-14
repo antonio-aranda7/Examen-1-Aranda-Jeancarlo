@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <title>Examen DOM</title>
-    <!--<style>
+    <style>
+        /*
         body {
             background-color:  black;
             text-decoration-color: rgb(52, 50, 206);
@@ -21,7 +23,7 @@
             margin-right: 50px;
         }
         input[type=text]:hover{
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
             color: white;
         }
         input[type=text]{
@@ -46,11 +48,34 @@
         border: 2px solid #4CAF50;
         }
         input[type=button]:hover{
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
             color: white;
         }
+        */
 
-    </style>-->
+        ol {
+
+        /*font-style: inherit;
+        font-weight: 300;
+        text-align: justify;
+        list-style: none;
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        background: #eee;*/
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        }
+
+        li.select {
+        background:red;
+        color: black;
+        }
+
+    </style>
 </head>
 <body id="body" text="grenn" bgcolor="black">
     <h2>Usando DOM y formularios</h3>
@@ -63,15 +88,10 @@
 <!---Agregue manualmente un formulario que permita agregar nombres de personajes favoritos, abajo del 3er párrafo. (10 puntos)-->
 <!---Usando DOM: Agregue sus personajes favoritos. ((10 puntos))-->  
     <p >Personajes favoritos</p> 
-    <!--<form id="personajes" action="" onsubmit="return validacion()>-->
     <form id="personajes">
         <p id="errorPersonaje" style="color: red;"></p>
         <input type="text" id="inputPersonaje" placeholder="Personaje"/>
-        <!--<input type="button" id="btnPersonaje" onclick="agregarPersonaje()" onclick="this.disabled=true;
-        this.value='Enviando...'; this.form.onsubmit()"  value="Agregar Personaje">-->
-        <!--<input type="button" id="btnPersonaje" value="Agregar Personaje" onchange="this.value='Agregar otro Personaje'; this.disabled=false; "
-        onclick="this.disabled=true; this.value='Enviando...'; agregarPersonaje()"  >-->
-        <input type="button" id="btnPersonaje" value="Agregar Personaje" onclick="agregarPersonaje()">
+        <input type="button" id="btnPersonaje" value="Agregar Personaje" onclick=" this.value='Agregar Otro Personaje'; agregarPersonaje();">
         <p id="pPersonaje"></p>
     </form>
 
@@ -80,128 +100,15 @@
     <p id="peliculas">Películas favoritas</p>
     <p id="errorPelicula" style="color: red;"></p>
     <input type="text" id="inputPelicula" placeholder="Pelicula"/>
-    <input type="button" id="btnPelicula" value="Agregar Pelicula" onclick="agregarPelicula()">
+    <input type="button" id="btnPelicula" value="Agregar Pelicula" onclick="this.value='Agregar Otra Pelicula'; agregarPelicula()">
     <ol id="olPeliculas">       
         <li>Shrek</li>
         <li>Un mundo feliz</li>
         <li>La vida inútil de Pito Pérez</li>
-        <li>El club de la pelea</li>        
+        <li>El club de la pelea</li>   
+        <div id="misPeliculas"></div>     
 	</ol>
-    <input type="button" id="btnPelicula" value="Eliminar Pelicula" onclick="borrarPelicula()">
-
-    <script>
-/*      agregando el dato nombre al 1° parafo*/
-        var nombre = document.getElementById("nombre");
-        var contenidoNombre = document.createTextNode(" Jeancarlo Antonio Aranda Cen");
-        nombre.appendChild(contenidoNombre);
-/*      agregando el dato numero de control al 2° parafo*/
-        var numero = document.getElementById("numero");
-        var contenidoNumero = document.createTextNode(" 17390318");
-        numero.appendChild(contenidoNumero);
-
-/*El objeto document permite acceder directamente a cualquier formulario mediante su atributo name:*/        
-        //var formularioPersonajes = document.personajes;
-        //var elementoPersona = document.personajes.personaje;
-/**/
-        var formularioPersonajes = document.getElementById("personajes");
-        var elementoPersona = document.getElementById("personaje");
-
-        var parrafopersonaje1 = document.createElement("p");
-        var parrafopersonaje2 = document.createElement("p");
-        var contenidoPersonaje1 = document.createTextNode("- Winnie the Pooh");
-        var contenidoPersonaje2 = document.createTextNode("- Ben 10");
-
-        parrafopersonaje1.appendChild(contenidoPersonaje1);
-        parrafopersonaje2.appendChild(contenidoPersonaje2);
-        formularioPersonajes.appendChild(parrafopersonaje1);
-        formularioPersonajes.appendChild(parrafopersonaje2);
-        //83
-        var x = 0;
-        //var contador = 1;
-        var array = Array();
-        var valido = new RegExp(/^([A-Za-z0-9-\s-])+$/); 
-        function agregarPersonaje() {
-            var personaje = document.getElementById("inputPersonaje").value;
-            //var error = 1;   
-            
-            if (personaje === '' || personaje === 0 || personaje === null){               
-                document.getElementById("errorPersonaje").innerHTML =" No ha ingresado ningun personaje" ;                   
-                /*var errorPersonaje = document.createElement("p");
-                var errorContenidoPersonaje = document.createTextNode("Ingrese un personaje");
-                errorPersonaje.appendChild(errorContenidoPersonaje);
-                formularioPersonajes.appendChild(errorPersonaje);
-                error++;*/ 
-            }
-            else{
-                if (!valido.test(personaje)){
-                    document.getElementById("errorPersonaje").innerHTML = "El dato: " + document.getElementById("inputPersonaje").value + " es erroneo";
-                }
-                else{
-                    array[x] = document.getElementById("inputPersonaje").value;
-                    x++;
-                    var e = "";
-                    for (var i = 0; i <array.length; i++) {
-                        //var textopersona = document.createTextNode("-"+ personaje); 
-                    //e += contador + ". " + array[i] + "<br/>";
-                    e +="- " + array[i] + "<br/>";
-                    }
-                    document.getElementById("pPersonaje").innerHTML = e;
-                    
-                    //document.getElementById("pPersonaje").appendChild(textopersona);     
-                    /*var parrafopersonaje = document.createElement("p");         
-                    for (var i = 0; i < 1; i++) {
-                        var textopersona = document.createTextNode(document.getElementById("personaje").value);
-                    }
-                    document.getElementById("personaje").appendChild(textopersona);*/
-                    document.getElementById("errorPersonaje").innerHTML = "";
-                }
-            }
-                contador++;
-        }
-
-        function agregarPelicula() {
-            var lista = document.createElement("li");
-            var pelicula = document.getElementById("inputPelicula").value;
-            var textoCelda = document.createTextNode(pelicula);
-            if (pelicula === '' || pelicula == 0 || pelicula == null ){
-                document.getElementById("errorPelicula").innerHTML =" No ha ingresado ninguna Pelicula" ;
-            }
-            else {
-                if (!valido.test(pelicula)){
-                document.getElementById("errorPelicula").innerHTML = "El dato: " + document.getElementById("inputPelicula").value + " es erroneo";
-                }
-                else{
-                lista.appendChild(textoCelda)
-                document.getElementById("olPeliculas").appendChild(lista);
-                document.getElementById("errorPelicula").innerHTML = "";
-                }
-            }
-        }
-    
-        function borrarPelicula(){
-            var pelicula = document.getElementById("inputPelicula").value;
-            var peliculasArray = document.getElementsByTagName("li");
-            if (pelicula === '' || pelicula == 0){
-                document.getElementById("errorPelicula").innerHTML =" No ha ingresado ninguna Pelicula" ;
-            }else {
-                for (var i = 0; i < peliculasArray.length; i++) {
-                    if (peliculasArray[i].textContent === pelicula) {
-                        document.getElementById("olPeliculas").removeChild(peliculasArray[i])
-                    }
-                }
-            }
-
-        }
-
-        function validacion(){
-            
-        }
-        /*var parrafos = document.getElementsByTagName("p");
-        var segundoParrafo = parrafos[1];
-        var contenidoNombre = document.createTextNode(" Jeancarlo Antonio Aranda Cen");
-        var nombre = segundoParrafo.getElementsByTagName("p");
-        
-        nombre.appendChild(contenidoNombre);*/
-    </script>
+    <input type="button" id="btnPelicula" value="Eliminar Pelicula" onclick="this.value='Eliminar Otra Pelicula'; borrarPelicula(); eliminar();">
 </body>
+<script type="text/javascript" src="DOM.js"></script>
 </html>
