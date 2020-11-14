@@ -33,15 +33,16 @@
 <!---Agregue los elementos y scripts necesarios para que mediante el uso de controles, el usuario seleccione y elimine las películas que desee. (15 puntos)-->
 <!---Usando DOM: Agregue los elementos del arreglo de películas, a la lista de películas (10 puntos)-->  
     <p id="peliculas">Películas favoritas</p>
-
-
-    <ol id="favoritos">
-        <input type="text" id="inputFavoritos" placeholder="Pelicula"/>
+    <p id="errorPelicula" style="color: red;"></p>
+    <input type="text" id="inputPelicula" placeholder="Pelicula"/>
+    <input type="button" id="btnPelicula" value="Agregar Pelicula" onclick="agregarPelicula()">
+    <ol id="olPeliculas">       
         <li>Shrek</li>
         <li>Un mundo feliz</li>
         <li>La vida inútil de Pito Pérez</li>
-        <li>El club de la pelea</li>
+        <li>El club de la pelea</li>        
 	</ol>
+    <input type="button" id="btnPelicula" value="Eliminar Pelicula" onclick="borrarPelicula()">
 
     <p>Arreglos y Objetos</p>
 
@@ -107,7 +108,34 @@
                 //contador++;
         }
 
-        
+        function agregarPelicula() {
+            var lista = document.createElement("li");
+            var pelicula = document.getElementById("inputPelicula").value;
+            var textoCelda = document.createTextNode(pelicula);
+            if (pelicula === '' || pelicula == 0 || pelicula == null ){
+                document.getElementById("errorPelicula").innerHTML =" No ha ingresado ninguna Pelicula" ;
+            }
+            else {
+                lista.appendChild(textoCelda)
+                document.getElementById("olPeliculas").appendChild(lista);
+            }
+        }
+    
+        function borrarPelicula(){
+            var pelicula = document.getElementById("inputPelicula").value;
+            var peliculasArray = document.getElementsByTagName("li");
+            if (pelicula === '' || pelicula == 0){
+                document.getElementById("errorPelicula").innerHTML =" No ha ingresado ninguna Pelicula" ;
+            }else {
+                for (var i = 0; i < peliculasArray.length; i++) {
+                    if (peliculasArray[i].textContent === pelicula) {
+                        document.getElementById("olPeliculas").removeChild(peliculasArray[i])
+                    }
+                }
+            }
+
+        }
+
         function validacion(){
             
         }
