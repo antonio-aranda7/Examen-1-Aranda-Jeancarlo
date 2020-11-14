@@ -5,9 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Examen DOM</title>
-    
+    <!--<style>
+        body {
+            background-color:  black;
+            text-decoration-color: rgb(52, 50, 206);
+        }
+        p,ol,li {
+            font-size: 17px;
+            margin-top: 20px;
+        }
+        li {
+            background: #424141;
+            padding: 5px;
+            margin-left: 5px;
+            margin-right: 50px;
+        }
+        input[type=text]:hover{
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+        input[type=text]{
+            
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        transition-duration: 0.4s;
+        border: 2px solid #4CAF50;
+        }
+
+        input[type=button]{
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        border-radius: 12px;
+        transition-duration: 0.4s;
+        border: 2px solid #4CAF50;
+        }
+        input[type=button]:hover{
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+    </style>-->
 </head>
-<body name="body" text=white bgcolor="black">
+<body id="body" text="grenn" bgcolor="black">
     <h2>Usando DOM y formularios</h3>
 
     <p>Usando DOM y formularios</p>
@@ -44,8 +89,6 @@
 	</ol>
     <input type="button" id="btnPelicula" value="Eliminar Pelicula" onclick="borrarPelicula()">
 
-    <p>Arreglos y Objetos</p>
-
     <script>
 /*      agregando el dato nombre al 1° parafo*/
         var nombre = document.getElementById("nombre");
@@ -67,27 +110,33 @@
         var parrafopersonaje2 = document.createElement("p");
         var contenidoPersonaje1 = document.createTextNode("- Winnie the Pooh");
         var contenidoPersonaje2 = document.createTextNode("- Ben 10");
+
         parrafopersonaje1.appendChild(contenidoPersonaje1);
         parrafopersonaje2.appendChild(contenidoPersonaje2);
         formularioPersonajes.appendChild(parrafopersonaje1);
         formularioPersonajes.appendChild(parrafopersonaje2);
         //83
-        /*Andrei cambia el valor del input y agregarlo debajo*/
         var x = 0;
         //var contador = 1;
         var array = Array();
+        var valido = new RegExp(/^([A-Za-z0-9-\s-])+$/); 
         function agregarPersonaje() {
             var personaje = document.getElementById("inputPersonaje").value;
-            //var error = 1;    
-            if (personaje === '' || personaje == 0){               
-                    //alert("No ha ingresado ningun personaje")
-                    document.getElementById("errorPersonaje").innerHTML =" No ha ingresado ningun personaje" ;                   
-                    /*var errorPersonaje = document.createElement("p");
-                    var errorContenidoPersonaje = document.createTextNode("Ingrese un personaje");
-                    errorPersonaje.appendChild(errorContenidoPersonaje);
-                    formularioPersonajes.appendChild(errorPersonaje);
-                    error++;*/ 
-                }else{
+            //var error = 1;   
+            
+            if (personaje === '' || personaje === 0 || personaje === null){               
+                document.getElementById("errorPersonaje").innerHTML =" No ha ingresado ningun personaje" ;                   
+                /*var errorPersonaje = document.createElement("p");
+                var errorContenidoPersonaje = document.createTextNode("Ingrese un personaje");
+                errorPersonaje.appendChild(errorContenidoPersonaje);
+                formularioPersonajes.appendChild(errorPersonaje);
+                error++;*/ 
+            }
+            else{
+                if (!valido.test(personaje)){
+                    document.getElementById("errorPersonaje").innerHTML = "El dato: " + document.getElementById("inputPersonaje").value + " es erroneo";
+                }
+                else{
                     array[x] = document.getElementById("inputPersonaje").value;
                     x++;
                     var e = "";
@@ -104,8 +153,10 @@
                         var textopersona = document.createTextNode(document.getElementById("personaje").value);
                     }
                     document.getElementById("personaje").appendChild(textopersona);*/
+                    document.getElementById("errorPersonaje").innerHTML = "";
                 }
-                //contador++;
+            }
+                contador++;
         }
 
         function agregarPelicula() {
@@ -116,8 +167,14 @@
                 document.getElementById("errorPelicula").innerHTML =" No ha ingresado ninguna Pelicula" ;
             }
             else {
+                if (!valido.test(pelicula)){
+                document.getElementById("errorPelicula").innerHTML = "El dato: " + document.getElementById("inputPelicula").value + " es erroneo";
+                }
+                else{
                 lista.appendChild(textoCelda)
                 document.getElementById("olPeliculas").appendChild(lista);
+                document.getElementById("errorPelicula").innerHTML = "";
+                }
             }
         }
     
